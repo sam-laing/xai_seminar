@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1718832687 "presentation.tex" "presentation.pdf" "presentation" 1718832689
+["pdflatex"] 1718919624 "presentation.tex" "presentation.pdf" "presentation" 1718919629
   "/etc/texmf/web2c/texmf.cnf" 1698408728 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/slaing/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecss0600.600pk" 1716798125 12316 b0e514a37aee25b6df1174d1e7d6cf0d ""
   "/home/slaing/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecss0800.600pk" 1716798126 15932 707147df8869f9a4f460f4d62a371497 ""
@@ -246,14 +246,21 @@
   "ImgNetSG.png" 1718792394 301105 f7a334081f9a532799c71aecea36425c ""
   "ROAR_methods.png" 1717404440 672829 20cd16e104aecb8eb8f2e60f083544fc ""
   "black_car.png" 1718202043 46958 dc641980955854a5e5b4ae21c2595a8c ""
+  "compareSGBP.png" 1718901127 432226 a10ffa844d6e2f35abb6f82cf0650923 ""
+  "dog_net2.png" 1718899492 264176 4a04a04655c1c425fecb189f629321f4 ""
   "green_frog.png" 1718202176 697961 4dfb2bf651505c5d643e0d730cd98e9f ""
   "other2SG.png" 1718792771 562101 c46877e62876633f214f10d257001c87 ""
-  "presentation.aux" 1718832689 3251 b9546c38540f4f75a2e27d2b737106bf "pdflatex"
-  "presentation.nav" 1718832689 1782 cefb3963e21126f5f8a30b35b619a1c9 "pdflatex"
-  "presentation.out" 1718832687 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "presentation.tex" 1718832684 7358 662f4baaf0d170946512c3a73c0962e0 ""
+  "presentation.aux" 1718919628 4025 b59d12b33b15a3279646c9f35b818c17 "pdflatex"
+  "presentation.nav" 1718919628 2340 5ca6bdbdc7b6f41d16e975deded120ea "pdflatex"
+  "presentation.out" 1718919625 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "presentation.tex" 1718919623 7599 7d99c65fd96fd576d7d02f62986bbbc5 ""
   "retrain_vs_not.png" 1718201567 87532 f9f73fcf73ac2c513d678378ccdeeb0a ""
   "tiger.png" 1716835416 40126 70df5e8bc5a3e7933e0d93eb3b20a3f8 ""
+  "tiger0.1.png" 1718905868 185357 f4fa3d97b0bf699d97078c1d6103c44e ""
+  "tiger0.3.png" 1718905868 217568 bade4d3cef4080496623fe5bbbfa9b93 ""
+  "tiger0.5.png" 1718905868 216047 a0694d6b579553fc093cbeb66731acf7 ""
+  "tiger0.7.png" 1718905869 186358 ab9a52deefa7fde5c89add4dd4d690c1 ""
+  "tiger0.9.png" 1718905869 100464 6057465bfeb0e69bff46373f018e0212 ""
   (generated)
   "presentation.aux"
   "presentation.log"
