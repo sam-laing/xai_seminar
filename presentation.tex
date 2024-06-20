@@ -83,15 +83,41 @@
 \end{frame}
 \begin{frame}
 	\frametitle{Included Interpretability Methods: Ensembling in a Nutshell}
-	\includegraphics[width=10cm, height=4.5cm]{compareSGBP.png}
+	\includegraphics[width=9.5cm, height=4cm]{compareSGBP.png}
 \begin{itemize}
 \item Inject inputs with Gaussian noise consider mean/variance of outputs \pause
 \item $\eta_i \sim N(0, \sigma ^2 I)$ $i\in \{1,\ldots, J\} $ \pause
 \item SmoothGrad (SG) $e = \sum_{i=1}^{J} {f( x + \eta_i, A_n^{\ell}) }$ \pause
 \item VarGrad (VAR) $e = \text{Var}\left(  \sum_{i}^{J} {f(x + \eta_i, A_n^{\ell})}\right) $ \pause
-\item SmoothGrad Squared (SG-SQ) $e = \sum_{i=1}^{J} {f( x + \eta_i, A_n^{\ell})^{2} }$
+\item SmoothGrad Squared (SG-SQ) $e = \sum_{i=1}^{J} {f( x + \eta_i, A_n^{\ell})^{2} }$\pause
 \end{itemize}
+$\to$Apply attribution/interpretability methods to these statistics
 \end{frame}
+
+\begin{frame}
+    \frametitle{Included Interpretability Methods: Ensembling in a Nutshell}
+    \begin{columns}[T] % Align columns at the top
+        \begin{column}{0.7\textwidth}
+            \includegraphics[width=1.0\textwidth, height=4cm]{compareSGBP.png}
+        \end{column}
+        \begin{column}{0.3\textwidth}
+		Smilkov's "Smoothgrad" paper (2017): \\
+		"Reduce noise by adding noise"
+        \end{column}
+    \end{columns}
+    \begin{itemize}
+        \item Inject inputs with Gaussian noise consider mean/variance of outputs \pause
+        \item $\eta_i \sim N(0, \sigma ^2 I)$ $i\in \{1,\ldots, J\} $ \pause
+        \item SmoothGrad (SG) $e = \sum_{i=1}^{J} {f( x + \eta_i, A_n^{\ell}) }$ \pause
+        \item VarGrad (VAR) $e = \text{Var}\left(  \sum_{i}^{J} {f(x + \eta_i, A_n^{\ell})}\right) $ \pause
+        \item SmoothGrad Squared (SG-SQ) $e = \sum_{i=1}^{J} {f( x + \eta_i, A_n^{\ell})^{2} }$\pause
+    \end{itemize}
+$\to$Apply attribution/interpretability methods to these statistics
+\end{frame}
+
+
+
+
 \begin{frame}
 	\frametitle{Motivation}
 	\begin{itemize}
@@ -149,12 +175,10 @@
 	\frametitle{The idea behind ROAR}
 	\begin{itemize}
 		\item Effect of having dropped the "most informative pixels" as determined by each interpretability method.
-		\item Investigate how much their removal from the training process effects accuracy.		\item Also a no-retraining variant
-
-
+		\item Investigate how much their removal from the training process effects accuracy.		
+		\item Also a no-retraining variant
 	\end{itemize}
 \end{frame}
-
 \begin{frame}
 	\frametitle{To Retrain Or not To Retrain}
 	\begin{itemize}
@@ -168,7 +192,7 @@
 	Really just a refinement of above.
 	\begin{itemize}
 		\item ResNet50 classifier: Imagenet, Birdsnap and Food 101\pause
-		\item Along with a number of different interpretability methods, a random ranking was also included: This tells us if the method outperforms random.\pause
+		\item random pixel selection and Sobel Edge filter benchmarks.\pause
 		\item  New train and test sets are generated for each $j \in \{0,10,30,50,70,90\} $\pause
 		\item For fairness, the model is retrained 5 times for each method (DNN training is noisy) \pause
 	\end{itemize}

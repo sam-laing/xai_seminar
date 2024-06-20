@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1718919624 "presentation.tex" "presentation.pdf" "presentation" 1718919629
+["pdflatex"] 1718922260 "presentation.tex" "presentation.pdf" "presentation" 1718922263
   "/etc/texmf/web2c/texmf.cnf" 1698408728 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/slaing/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecss0600.600pk" 1716798125 12316 b0e514a37aee25b6df1174d1e7d6cf0d ""
   "/home/slaing/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecss0800.600pk" 1716798126 15932 707147df8869f9a4f460f4d62a371497 ""
@@ -250,10 +250,10 @@
   "dog_net2.png" 1718899492 264176 4a04a04655c1c425fecb189f629321f4 ""
   "green_frog.png" 1718202176 697961 4dfb2bf651505c5d643e0d730cd98e9f ""
   "other2SG.png" 1718792771 562101 c46877e62876633f214f10d257001c87 ""
-  "presentation.aux" 1718919628 4025 b59d12b33b15a3279646c9f35b818c17 "pdflatex"
-  "presentation.nav" 1718919628 2340 5ca6bdbdc7b6f41d16e975deded120ea "pdflatex"
-  "presentation.out" 1718919625 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "presentation.tex" 1718919623 7599 7d99c65fd96fd576d7d02f62986bbbc5 ""
+  "presentation.aux" 1718922263 4154 113c6ac4cb12bba8375e27edece5d3ca "pdflatex"
+  "presentation.nav" 1718922263 2433 748fe845159dc65ea52c66d2a696b825 "pdflatex"
+  "presentation.out" 1718922261 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "presentation.tex" 1718922259 8604 57fb244a080acbf307dbacb2b2cc5b3c ""
   "retrain_vs_not.png" 1718201567 87532 f9f73fcf73ac2c513d678378ccdeeb0a ""
   "tiger.png" 1716835416 40126 70df5e8bc5a3e7933e0d93eb3b20a3f8 ""
   "tiger0.1.png" 1718905868 185357 f4fa3d97b0bf699d97078c1d6103c44e ""
