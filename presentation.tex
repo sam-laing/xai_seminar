@@ -15,7 +15,7 @@
 \newtheorem*{dood}{}
 \usepackage{bbm}
 \usepackage{tikz-cd,mathtools}
-
+\usepackage{cancel}  
 \newcommand{\A}{\mathbb{A}}
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
@@ -69,6 +69,17 @@
 \end{frame}
 
 \begin{frame}
+	\frametitle{Motivation}
+	\begin{itemize}
+		\item Is my interpretability method is really doing anything? \pause
+		\item Different methods may consider different features important \pause
+		\item Interpretability method A $>$ Interpretability method B??\pause
+		\item If only there was a benchmarking framework to do this...
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}
 	\frametitle{Included Interpretability Methods}
 	\includegraphics[width=10cm, height=5cm]{compareSGBP.png}
 
@@ -80,18 +91,6 @@
 	\item Integrated Gradients
 	
 	\end{itemize}
-\end{frame}
-\begin{frame}
-	\frametitle{Included Interpretability Methods: Ensembling in a Nutshell}
-	\includegraphics[width=9.5cm, height=4cm]{compareSGBP.png}
-\begin{itemize}
-\item Inject inputs with Gaussian noise consider mean/variance of outputs \pause
-\item $\eta_i \sim N(0, \sigma ^2 I)$ $i\in \{1,\ldots, J\} $ \pause
-\item SmoothGrad (SG) $e = \sum_{i=1}^{J} {f( x + \eta_i, A_n^{\ell}) }$ \pause
-\item VarGrad (VAR) $e = \text{Var}\left(  \sum_{i}^{J} {f(x + \eta_i, A_n^{\ell})}\right) $ \pause
-\item SmoothGrad Squared (SG-SQ) $e = \sum_{i=1}^{J} {f( x + \eta_i, A_n^{\ell})^{2} }$\pause
-\end{itemize}
-$\to$Apply attribution/interpretability methods to these statistics
 \end{frame}
 
 \begin{frame}
@@ -108,31 +107,26 @@ $\to$Apply attribution/interpretability methods to these statistics
     \begin{itemize}
         \item Inject inputs with Gaussian noise consider mean/variance of outputs \pause
         \item $\eta_i \sim N(0, \sigma ^2 I)$ $i\in \{1,\ldots, J\} $ \pause
-        \item SmoothGrad (SG) $e = \sum_{i=1}^{J} {f( x + \eta_i, A_n^{\ell}) }$ \pause
-        \item VarGrad (VAR) $e = \text{Var}\left(  \sum_{i}^{J} {f(x + \eta_i, A_n^{\ell})}\right) $ \pause
-        \item SmoothGrad Squared (SG-SQ) $e = \sum_{i=1}^{J} {f( x + \eta_i, A_n^{\ell})^{2} }$\pause
+        \item SmoothGrad (SG) $e = \sum_{i=1}^{J} {f_c( x + \eta_i, A_n^{\ell}) }$ \pause
+        \item VarGrad (VAR) $e = \text{Var}\left(  \sum_{i}^{J} {f_c(x + \eta_i, A_n^{\ell})}\right) $ \pause
+        \item SmoothGrad Squared (SG-SQ) $e = \sum_{i=1}^{J} {f_c( x + \eta_i, A_n^{\ell})^{2} }$\pause
     \end{itemize}
 $\to$Apply attribution/interpretability methods to these statistics
 \end{frame}
 
 
-
-
-\begin{frame}
-	\frametitle{Motivation}
-	\begin{itemize}
-		\item Is my interpretability method is really doing anything? \pause
-		\item Different methods may consider different features important \pause
-		\item Interpretability method A $>$ Interpretability method B??\pause
-		\item If only there was a benchmarking framework to do this...
-	\end{itemize}
-\end{frame}
-
 \begin{frame}
 	\frametitle{ROAR (RemOve And Retrain)}
-	\includegraphics[height=6cm, width=8cm]{tiger.png}
+	\includegraphics[height=5.5cm, width=8cm]{tiger.png}\\
+\end{frame}
 
-	For each interpretability method, sort pixels by ranked importance. \\ \pause 
+
+\begin{frame}
+	\frametitle{The Idea Behind ROAR}
+	\includegraphics[height=5.5cm, width=8cm]{tiger.png}\\
+	Start with trained classifier $f$\\ \pause
+
+	$\forall $  method, $\forall $ image $\in$ dataset, sort pixels by ranked importance. \\ \pause 
 	
 
 	So $(e_j)_{j=1}^{D}$ of pixel coordinates $\forall $ image in dataset. $\implies ( (e_j^{(n)})_{j=1}^D )_{n=1}^N $
@@ -168,9 +162,6 @@ $\to$Apply attribution/interpretability methods to these statistics
 	\includegraphics[height=8cm, width=10cm]{tiger0.9.png}
 
 \end{frame}
-
-
-
 \begin{frame}
 	\frametitle{The idea behind ROAR}
 	\begin{itemize}
@@ -187,29 +178,55 @@ $\to$Apply attribution/interpretability methods to these statistics
 	\end{itemize}
 	\includegraphics[width=12cm, height=5cm]{retrain_vs_not.png}
 \end{frame}
+
 \begin{frame}
 	\frametitle{An Outline of the Experiment}
 	Really just a refinement of above.
 	\begin{itemize}
 		\item ResNet50 classifier: Imagenet, Birdsnap and Food 101\pause
-		\item random pixel selection and Sobel Edge filter benchmarks.\pause
-		\item  New train and test sets are generated for each $j \in \{0,10,30,50,70,90\} $\pause
-		\item For fairness, the model is retrained 5 times for each method (DNN training is noisy) \pause
+		\item Random pixel selection and Sobel Edge filter benchmarks.\pause
+		\item  New train and test sets are generated  $\forall  \ j \in \{0,10,30,50,70,90\} $\pause
+		\item Each model retrained 5 times $\forall $ method (DNN training is noisy) \pause
 	\end{itemize}
 \end{frame}
 
 \begin{frame}
 	\frametitle{ROAR in Action}
-	\includegraphics[height=8cm, width=10cm]{ROAR_methods.png}
+	\includegraphics[height=7.2cm, width=10cm]{ROAR_methods.png}\\ \pause
+	Initial Imagenet accuracy: $\sim78$ \% ... \pause Paper is from 2018!
 \end{frame}
+
+\begin{frame}
+	\frametitle{ROAR in Action}
+	\includegraphics[height=7.2cm, width=10cm]{ROAR_methods.png}\\
+	On average Replacing many pixels $\cancel{\implies}$ big decrease of predictive power! \pause
+
+\end{frame}
+
+
 \begin{frame}
 	\frametitle{Results}
-	\begin{itemize}
-		\item Surprisingly, replacing large numbers of pixels doesn't remove that much predictive power! \pause
-		\item For ImageNet, after 90\% of the pixels are randomly removed, still 63.53\% accuracy relative to the original 78.68\% \pause
-		\item Don't worry... this paper is from 2018, they don't stink at training networks :)\pause
-		\item According to the paper, SG-SQ and VarGrad are the real heros \pause
-	\end{itemize} 
+	\includegraphics[height=7.2cm, width=10cm]{ROAR_methods.png}\\
+	On average Replacing many pixels $\cancel{\implies}$ big decrease of predictive power! \pause
+
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Results}
+	\includegraphics[height=7.2cm, width=10cm]{ROAR_methods.png}\\
+	ImageNet, 90\% pixels randomly removed... still 63.52\% accuracy relative to the original 78.68\% \pause
+\end{frame}
+
+\begin{frame}
+	\frametitle{Results}
+	\includegraphics[height=7.2cm, width=10cm]{ROAR_methods.png}\\
+
+	According to the paper, SG-SQ and VarGrad are the real heros \pause
+\end{frame}
+
+\begin{frame}
+	\frametitle{Some Plots}
 	\includegraphics[width=11cm, height=4cm]{ImgNetSG.png}
 
 \end{frame}
@@ -219,15 +236,16 @@ $\to$Apply attribution/interpretability methods to these statistics
 \begin{frame}
 	\frametitle{Results (cont.)}
 	\begin{itemize}
-	\item The dataset affects which 
+	\item SG - SQ and VarGrad always outperformed  \pause
+	\item Interpretabtility method wrapped around changed for dataset
 	\end{itemize}
 \end{frame}
 \begin{frame}
     \frametitle{A Few Possible Issues in the Approach}
     \begin{itemize}
-        \item This experiment replaces the top j pixels with the mean of the image.
-        \item Is this really the best way?
-        \item The mean still conveys possibly useful information
+	\item They replace the top j pixels with the mean of the image.\pause
+        \item Is this really the best way?\pause
+        \item The mean still conveys possibly useful information \pause
         \item Alternative methods are sometimes advised but most have their own issues.
     \end{itemize}
     \begin{minipage}{0.48\textwidth}
@@ -237,22 +255,33 @@ $\to$Apply attribution/interpretability methods to these statistics
     \hfill
     \begin{minipage}{0.48\textwidth}
         \centering
-        \includegraphics[width=\textwidth, height=3.5cm]{green_frog.png}
+        \includegraphics[width=\textwidth, height=3.5cm]{green_frog2.png}
     \end{minipage}
 \end{frame}
 \begin{frame}
 	\frametitle{Another possible Issue}
 	\begin{itemize}
+	\item Cost 
 	\item In practice retraining a large image classifier several times is pretty unfeasible computationally speaking.  (ImageNet with ResNet50 can take 
 	\item Without retraining, you run into theoretical violations of ML!
 	\end{itemize}
-\end{frame}A
-\begin{frame}
-	\frametitle{Yet Another Possible Issue}
-
 \end{frame}
 \begin{frame}
-	\frametitle{Why I chose this paper}
+\frametitle{Why I chose this paper}\pause
+So may interpretability methods boast high performance. How to pick the right one? 
+\\
+Hard to find strong quantitative statements about explainability accuracy. \pause
+
+\vspace{0.3cm}
+
+    \textcolor{blue}{\textbf{\Large Did I like it?}} \pause
+   
+    \vspace{0.3cm}
+
+    Yes and No! \\ \pause
+    Quantitative framework and discovery are nice. \\ \pause
+    Some of the details might need refinement \\ \pause
+    Some 
 \end{frame}
 \begin{frame}
 	\frametitle{Questions?}
