@@ -107,9 +107,9 @@
     \begin{itemize}
         \item Inject inputs with Gaussian noise consider mean/variance of outputs \pause
         \item $\eta_i \sim N(0, \sigma ^2 I)$ $i\in \{1,\ldots, J\} $ \pause
-        \item SmoothGrad (SG) $e = \sum_{i=1}^{J} {f_c( x + \eta_i, A_n^{\ell}) }$ \pause
-        \item VarGrad (VAR) $e = \text{Var}\left(  \sum_{i}^{J} {f_c(x + \eta_i, A_n^{\ell})}\right) $ \pause
-        \item SmoothGrad Squared (SG-SQ) $e = \sum_{i=1}^{J} {f_c( x + \eta_i, A_n^{\ell})^{2} }$\pause
+	\item SmoothGrad (SG) $e = \sum_{i=1}^{J} {f_{c_i}( x + \eta_i) }$ \pause
+	\item VarGrad (VAR) $e = \text{Var}\left(  \sum_{i}^{J} {f_{c_i}(x + \eta_i)}\right) $ \pause
+	\item SmoothGrad Squared (SG-SQ) $e = \sum_{i=1}^{J} {f_{c_i}( x + \eta_i)^{2} }$\pause
     \end{itemize}
 $\to$Apply attribution/interpretability methods to these statistics
 \end{frame}
@@ -173,7 +173,7 @@ $\to$Apply attribution/interpretability methods to these statistics
 \begin{frame}
 	\frametitle{To Retrain Or not To Retrain}
 	\begin{itemize}
-	\item Without retraining the model, train and test come from different distributions... violates key assumption of ML \pause
+	\item No retraining  $\implies p_{\ \text{train}} \neq p_{ \ \text{test}}$ ... $\rightarrow \ \leftarrow$ in ML \pause
 	\item Paper therefore argues it is necessary \pause
 	\end{itemize}
 	\includegraphics[width=12cm, height=5cm]{retrain_vs_not.png}
@@ -186,7 +186,7 @@ $\to$Apply attribution/interpretability methods to these statistics
 		\item ResNet50 classifier: Imagenet, Birdsnap and Food 101\pause
 		\item Random pixel selection and Sobel Edge filter benchmarks.\pause
 		\item  New train and test sets are generated  $\forall  \ j \in \{0,10,30,50,70,90\} $\pause
-		\item Each model retrained 5 times $\forall $ method (DNN training is noisy) \pause
+		\item Each model retrained 5 times $\forall $ method (DNN training is noisy) 
 	\end{itemize}
 \end{frame}
 
@@ -226,27 +226,35 @@ $\to$Apply attribution/interpretability methods to these statistics
 \end{frame}
 
 \begin{frame}
-	\frametitle{Some Plots}
-	\includegraphics[width=11cm, height=4cm]{ImgNetSG.png}
+	\frametitle{Plots}
+	\includegraphics[width = 10cm, height=7.2cm]{all_the_plots.png}\\
+	SG - SQ and VarGrad always outperformed... \pause
+	\\
+	But best method to wrap around changed
 
 \end{frame}
 \begin{frame}
-	\includegraphics[width=11cm, height=8cm]{other2SG.png}
-\end{frame}
-\begin{frame}
-	\frametitle{Results (cont.)}
+	\frametitle{My Thoughts (Dummy Disclaimer!)}
 	\begin{itemize}
-	\item SG - SQ and VarGrad always outperformed  \pause
-	\item Interpretabtility method wrapped around changed for dataset
+	\item Why VAR and SG-SQ over Vanilla SG? \\ \pause 
+	\item Variance captures more of the distribution's properties than mean?\\ \pause
+	\item SG-SQ something of a middleground as unnormalized \\ \pause
 	\end{itemize}
-\end{frame}
+	\begin{align*}
+		\text{SG-SQ:  } e_2 := \sum_{i=1}^{J} {f_{c_i} (x+\eta_i)^2} \quad &, \quad \text{SG:  } e := \sum_{i=1}^{J} {f_{c_i}(x+\eta_i)} \\
+	\pause
+		\implies \partial_{x_d} e_2 = 2 e . &\partial_{ x_d} e   \quad  \forall d
+	\end{align*}
+	\pause
+	Gradient of $e_2$ encodes more info since mean explicitely there
+\end{frame} 
 \begin{frame}
     \frametitle{A Few Possible Issues in the Approach}
     \begin{itemize}
-	\item They replace the top j pixels with the mean of the image.\pause
-        \item Is this really the best way?\pause
-        \item The mean still conveys possibly useful information \pause
-        \item Alternative methods are sometimes advised but most have their own issues.
+	 \item Replace the top j pixels the mean.\pause
+	
+        \item Still conveys possibly useful information \pause
+	\item "Missingness" not well defined for images \pause
     \end{itemize}
     \begin{minipage}{0.48\textwidth}
         \centering
@@ -261,14 +269,15 @@ $\to$Apply attribution/interpretability methods to these statistics
 \begin{frame}
 	\frametitle{Another possible Issue}
 	\begin{itemize}
-	\item Cost 
+	\item Cost! \\
+	\item More compute needed for big datasets \\
 	\item In practice retraining a large image classifier several times is pretty unfeasible computationally speaking.  (ImageNet with ResNet50 can take 
 	\item Without retraining, you run into theoretical violations of ML!
 	\end{itemize}
 \end{frame}
-\begin{frame}
+w\begin{frame}
 \frametitle{Why I chose this paper}\pause
-So may interpretability methods boast high performance. How to pick the right one? 
+So many interpretability methods boast high performance: How to pick the right one? 
 \\
 Hard to find strong quantitative statements about explainability accuracy. \pause
 
@@ -281,7 +290,8 @@ Hard to find strong quantitative statements about explainability accuracy. \paus
     Yes and No! \\ \pause
     Quantitative framework and discovery are nice. \\ \pause
     Some of the details might need refinement \\ \pause
-    Some 
+    Slightly limited number of techniques compared \\
+    Paper used unclear notation and ommitted details at times
 \end{frame}
 \begin{frame}
 	\frametitle{Questions?}
