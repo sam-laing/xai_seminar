@@ -9,3 +9,11 @@
 *.fls
 *.log
 
+.snm
+.gz
+.toc
+.aux
+.fdb_latexmk
+.fls
+.log
+
